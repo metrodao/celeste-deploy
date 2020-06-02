@@ -33,8 +33,8 @@ const environments = {
       registrar:        '0x3665e7bfd4d3254ae7796779800f5b603c43c60d'        // Rinkeby aragonID
     },
     instance: {
-      openDate:         Math.floor(new Date() / 1000 + 600).toString(),     // Presale will start in 10 minutes from now
-      period:           '864000',                                           // Presale period will last 10 days, bonding curve will start right after that
+      openDate:         Math.floor(new Date() / 1000 + 120).toString(),     // Presale will start in 2 minutes from now
+      period:           '600',                                              // Presale period will last 10 minutes, bonding curve will start right after that
       exchangeRate:     '100000000',                                        // Presale exchange rate 1 ANT = 100 ANJ
       beneficiaryPct:   '200000',                                           // 20% of the generated ANJ will be minted for the owner
       reserveRatio:     '33333',                                            // Bonding curve reserve ratio of 33%, also used to compute the virtual balance
@@ -110,7 +110,7 @@ const environments = {
 
 Object.keys(environments).forEach(network => {
   environments[network].governor = governor[network]
-  environments[network].instance.id = 'templates-externally-owned-presale-bonding-curve'
+  environments[network].instance.id = 'templates-externally-owned-presale-bonding-curve-202006-001'
   environments[network].instance.bondedToken = requireOutput(`minime.${network}`, getAddressIfDefined('ANJ'))
   environments[network].instance.collateralToken = requireOutput(`minime.${network}`, getAddressIfDefined('ANT'))
 })
