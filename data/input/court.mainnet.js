@@ -8,10 +8,10 @@ const TERM_DURATION = 60 * 60 * 8
 // 2020, Feb 10th 16.00 UTC, three years after: https://twitter.com/AragonProject/status/830013470737309697
 const START_DATE = Math.floor(new Date('2020-02-10T16:00:00.000Z') / 1000)
 
-const ANJ = {
-  symbol: 'ANJ',
+const HNY = {
+  symbol: 'HNY',
   decimals: 18,
-  address: requireOutput('minime.mainnet', getAddressIfDefined('ANJ'))
+  address: requireOutput('minime.mainnet', getAddressIfDefined('HNY'))
 }
 
 const DAI = {
@@ -53,12 +53,12 @@ module.exports = {
     skippedDisputes:               1,                            // number of dispute to skip
   },
   jurors: {
-    token:                         ANJ,
-    minActiveBalance:              bigExp(10000, ANJ.decimals),  // 10k ANJ is the minimum balance jurors must activate to participate in the Court
+    token:                         HNY,
+    minActiveBalance:              bigExp(10000, HNY.decimals),  // 10k ANJ is the minimum balance jurors must activate to participate in the Court
   },
   subscriptions: {
-    feeToken:                      DAI,                          // fee token for subscriptions is DAI
-    feeAmount:                     bigExp(7500, DAI.decimals),   // 7500 fee tokens per subscription period
+    feeToken:                      HNY,                          // fee token for subscriptions is DAI
+    feeAmount:                     bigExp(7500, HNY.decimals),   // 7500 fee tokens per subscription period
     periodDuration:                bn(90),                       // each subscription period lasts 90 terms (30 days)
     prePaymentPeriods:             bn(12),                       // cannot pre-pay more than 12 periods in advance (1 year)
     resumePrePaidPeriods:          bn(12),                       // 12 pre-paid periods when resuming activity (1 year)

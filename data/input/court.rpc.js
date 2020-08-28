@@ -5,10 +5,10 @@ const { requireOutput, getAddressIfDefined } = require('../../src/helpers/requir
 const TERM_DURATION = 60 * 10                                        // 10 minutes
 const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minutes from now
 
-const ANJ = {
-  symbol: 'ANJ',
+const HNY = {
+  symbol: 'HNY',
   decimals: 18,
-  address: requireOutput('minime.rpc', getAddressIfDefined('ANJ'))
+  address: requireOutput('minime.rpc', getAddressIfDefined('HNY'))
 }
 
 const DAI = {
@@ -50,8 +50,8 @@ module.exports = {
     skippedDisputes:               0,                            // number of dispute to skip
   },
   jurors: {
-    token:                         ANJ,
-    minActiveBalance:              bigExp(100, ANJ.decimals),    // 100 ANJ is the minimum balance jurors must activate to participate in the Court
+    token:                         HNY,
+    minActiveBalance:              bigExp(100, HNY.decimals),    // 100 HNY is the minimum balance jurors must activate to participate in the Court
   },
   subscriptions: {
     feeToken:                      DAI,                          // fee token for subscriptions is DAI

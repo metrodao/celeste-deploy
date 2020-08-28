@@ -12,16 +12,6 @@ const environments = {
     newRegistry:         undefined,                                               // Court's new Jurors Registry instance (TBD)
     migrator:            undefined,                                               // Address of the migrator contract (TBD)
   },
-  staging: {
-    oldRegistry:         '0x3497b2F7eEB7f1BeEFb044c6DA90110C4D6d5C4E',            // Court's old Jurors Registry instance
-    newRegistry:         undefined,                                               // Court's new Jurors Registry instance (TBD)
-    migrator:            undefined,                                               // Address of the migrator contract (TBD)
-  },
-  ropsten: {
-    oldRegistry:         '0x9099eFf2830D6E4A11d60064DD67A3f51409043e',            // Court's old Jurors Registry instance
-    newRegistry:         '0x38398c6a6f2fcb0cae0cfef7395162bb9938f720',            // Court's new Jurors Registry instance
-    migrator:            '0x7720818bc53b41ad04a4346f6740770ca757543e',            // Address of the migrator contract
-  },
   rpc: {
     oldRegistry:         undefined,                                               // Court's old Jurors Registry instance
     newRegistry:         undefined,                                               // Court's new Jurors Registry instance (TBD)

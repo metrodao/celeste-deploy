@@ -5,10 +5,10 @@ const { requireOutput, getAddressIfDefined } = require('../../src/helpers/requir
 const TERM_DURATION = 60 * 60 * 8                                      // 8 hours
 const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minutes from now
 
-const ANJ = {
-  symbol: 'ANJ',
+const HNY = {
+  symbol: 'HNY',
   decimals: 18,
-  address: requireOutput('minime.rinkeby', getAddressIfDefined('ANJ'))
+  address: requireOutput('minime.rinkeby', getAddressIfDefined('HNY'))
 }
 
 const DAI = {
@@ -50,12 +50,12 @@ module.exports = {
     skippedDisputes:               2,                            // number of dispute to skip
   },
   jurors: {
-    token:                         ANJ,
-    minActiveBalance:              bigExp(100, ANJ.decimals),    // 100 ANJ is the minimum balance jurors must activate to participate in the Court
+    token:                         HNY,
+    minActiveBalance:              bigExp(100, HNY.decimals),    // 100 HNY is the minimum balance jurors must activate to participate in the Court
   },
   subscriptions: {
-    feeToken:                      DAI,                          // fee token for subscriptions is DAI
-    feeAmount:                     bigExp(10, DAI.decimals),     // 10 fee tokens per subscription period
+    feeToken:                      HNY,                          // fee token for subscriptions is DAI
+    feeAmount:                     bigExp(10, HNY.decimals),     // 10 fee tokens per subscription period
     periodDuration:                bn(90),                       // each subscription period lasts 90 terms (30 days)
     prePaymentPeriods:             bn(12),                       // cannot pre-pay more than 12 periods in advance (1 year)
     resumePrePaidPeriods:          bn(12),                       // 12 pre-paid periods when resuming activity (1 year)

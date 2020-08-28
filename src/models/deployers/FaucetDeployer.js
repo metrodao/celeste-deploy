@@ -43,6 +43,13 @@ module.exports = class extends BaseDeployer {
       await this.faucet.transferOwnership(owner)
     }
 
+    // const MiniMeToken = await this.environment.getArtifact('MiniMeToken', '@aragon/minime')
+    // for (const tokenAddress of tokensAddresses) {
+    //   logger.info(`Transferring ${tokenAddress} controller to specified address ${this.faucet.address} ...`)
+    //   const miniMeToken = await MiniMeToken.at(tokenAddress)
+    //   await miniMeToken.changeController(this.faucet.address)
+    // }
+
     const { address, transactionHash } = this.faucet
     logger.success(`Created faucet instance at ${address}`)
     this._saveDeploy({ address, transactionHash })

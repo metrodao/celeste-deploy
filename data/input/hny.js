@@ -4,14 +4,6 @@ const environments = {
   rpc: {
     factory:          undefined,                                      // Will be deployed unless specified
   },
-  staging: {
-    controller:       undefined,				                              // Will be set to the sender
-    factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
-  },
-  ropsten: {
-    controller:       undefined,  				                            // Will be set to the sender
-    factory:          '0x1ce5621d386b2801f5600f1dbe29522805b8ac11',   // MiniMe token factory used for the templates
-  },
   rinkeby: {
     controller:       undefined, 				                              // Will be set to the sender
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
@@ -25,8 +17,8 @@ const environments = {
 Object.keys(environments).forEach(network => {
   environments[network] = {
     ...environments[network],
-    name: 'Aragon Network Juror',
-    symbol: 'ANJ',
+    name: 'Honey',
+    symbol: 'HNY',
     decimals: 18,
     transfersEnabled: true,
   }
