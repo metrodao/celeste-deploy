@@ -2,10 +2,7 @@
 
 > See the [output folder](./data/output) for information on deployed contracts on live networks
 
-
-
-
-# Rinkeby Deployment
+## Rinkeby Deployment
 
 To deploy HNY and DAI make sure everything is set in order to use `truffle-hdwallet-provider` and run:
 ```
