@@ -1,5 +1,5 @@
 {
-  "name": "@aragon/court-deploy",
+  "name": "@1hive/celeste-deploy",
   "version": "1.2.0",
   "description": "Aragon Court deployment scripts",
   "author": "Aragon Association",
@@ -20,6 +20,7 @@
     "set:subscriptions-params": "node ./bin/index.js set-subscriptions-params --verbose"
   },
   "dependencies": {
+    "@1hive/celeste": "0.1.0",
     "@aragon/apps-agent": "^2.0.0",
     "@aragon/apps-token-manager": "^2.1.0",
     "@aragon/apps-voting": "^2.1.0",

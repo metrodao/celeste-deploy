@@ -1,7 +1,7 @@
 const CallsEncoder = require('../shared/CallsEncoder')
 const BaseDeployer = require('../shared/BaseDeployer')
 const logger = require('../../helpers/logger')('ControllerModulesManager')
-const { DISPUTE_MANAGER_ID, JURORS_REGISTRY_ID, SUBSCRIPTIONS_ID, TREASURY_ID, VOTING_ID } = require('../../helpers/court-modules')
+const { DISPUTE_MANAGER_ID, JURORS_REGISTRY_ID, SUBSCRIPTIONS_ID, TREASURY_ID, VOTING_ID, BRIGHTID_REGISTER_ID } = require('../../helpers/court-modules')
 
 module.exports = class extends BaseDeployer {
   constructor(config, environment, modules = {}) {
@@ -22,7 +22,7 @@ module.exports = class extends BaseDeployer {
     const modules = this._getChangingModules()
     const ids = modules.map(module => module.id)
     const addresses = modules.map(module => module.address)
-    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@aragon/court')
+    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@1hive/celeste')
     const controller = await AragonCourt.at(this.config.modules.court)
     await controller.setModules(ids, addresses)
     logger.success('Modules set successfully')
@@ -50,6 +50,7 @@ module.exports = class extends BaseDeployer {
     if (this.modules.subscriptions) modules.push({ id: SUBSCRIPTIONS_ID, address: this.modules.subscriptions, name: 'Subscriptions' })
     if (this.modules.jurorsRegistry) modules.push({ id: JURORS_REGISTRY_ID, address: this.modules.jurorsRegistry, name: 'JurorsRegistry' })
     if (this.modules.disputeManager) modules.push({ id: DISPUTE_MANAGER_ID, address: this.modules.disputeManager, name: 'DisputeManager' })
+    if (this.modules.brightIdRegister) modules.push({ id: BRIGHTID_REGISTER_ID, address: this.modules.brightIdRegister, name: 'BrightIdRegister' })
     return modules
   }
 }

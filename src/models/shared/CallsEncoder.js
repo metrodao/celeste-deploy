@@ -1,12 +1,12 @@
 const abi = require('web3-eth-abi')
 const AGENT_ABI = require('@aragon/apps-agent/abi/Agent.json').abi
 const VOTING_ABI = require('@aragon/apps-voting/abi/Voting.json').abi
-const CONTROLLER_ABI = require('@aragon/court/abi/Controller.json').abi
+const CONTROLLER_ABI = require('@1hive/celeste/abi/Controller.json').abi
 const MINIME_ABI = require('@aragon/minime/abi/MiniMeToken.json').abi
 const EOPBCTEMPLATE_ABI = require('@aragon/templates-externally-owned-presale-bonding-curve/abi/EOPBCTemplate.json').abi
-const CONTROLLED_RECOVERABLE_ABI = require('@aragon/court/abi/ControlledRecoverable.json').abi
+const CONTROLLED_RECOVERABLE_ABI = require('@1hive/celeste/abi/ControlledRecoverable.json').abi
 const JUROS_REGISTRY_MIGRATOR_ABI = require('@aragonone/court-registry-migrator/abi/JurorsRegistryMigrator.json').abi
-const SUBSCRIPTIONS_ABI = require('@aragon/court/abi/CourtSubscriptions.json').abi
+const SUBSCRIPTIONS_ABI = require('@1hive/celeste/abi/CourtSubscriptions.json').abi
 
 const CALLSCRIPT_ID = '0x00000001'
 const EMPTY_CALLSCRIPT = '0x00000001'

@@ -1,7 +1,7 @@
 const BaseDeployer = require('../shared/BaseDeployer')
 const logger = require('../../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
-const { DISPUTE_MANAGER_ID, JURORS_REGISTRY_ID, SUBSCRIPTIONS_ID, TREASURY_ID, VOTING_ID } = require('../../helpers/court-modules')
+const { DISPUTE_MANAGER_ID, JURORS_REGISTRY_ID, SUBSCRIPTIONS_ID, TREASURY_ID, VOTING_ID, BRIGHTID_REGISTER_ID } = require('../../helpers/court-modules')
 
 const VERSION = 'v1.0'
 
@@ -31,7 +31,7 @@ module.exports = class extends BaseDeployer {
 
   async loadOrDeployCourt() {
     const { court } = this.previousDeploy
-    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@aragon/court')
+    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@1hive/celeste')
 
     if (court && court.address) await this._loadAragonCourt(AragonCourt, court.address)
     else await this._deployAragonCourt(AragonCourt)
@@ -39,7 +39,7 @@ module.exports = class extends BaseDeployer {
 
   async loadOrDeployDisputes() {
     const { disputes } = this.previousDeploy
-    const DisputeManager = await this.environment.getArtifact('DisputeManager', '@aragon/court')
+    const DisputeManager = await this.environment.getArtifact('DisputeManager', '@1hive/celeste')
 
     if (disputes && disputes.address) await this._loadDisputes(DisputeManager, disputes.address)
     else await this._deployDisputes(DisputeManager)
@@ -47,7 +47,7 @@ module.exports = class extends BaseDeployer {
 
   async loadOrDeployRegistry() {
     const { registry } = this.previousDeploy
-    const JurorsRegistry = await this.environment.getArtifact('JurorsRegistry', '@aragon/court')
+    const JurorsRegistry = await this.environment.getArtifact('JurorsRegistry', '@1hive/celeste')
 
     if (registry && registry.address) await this._loadRegistry(JurorsRegistry, registry.address)
     else await this._deployRegistry(JurorsRegistry)
@@ -55,7 +55,7 @@ module.exports = class extends BaseDeployer {
 
   async loadOrDeployVoting() {
     const { voting } = this.previousDeploy
-    const Voting = await this.environment.getArtifact('CRVoting', '@aragon/court')
+    const Voting = await this.environment.getArtifact('CRVoting', '@1hive/celeste')
 
     if (voting && voting.address) await this._loadVoting(Voting, voting.address)
     else await this._deployVoting(Voting)
@@ -63,7 +63,7 @@ module.exports = class extends BaseDeployer {
 
   async loadOrDeployTreasury() {
     const { treasury } = this.previousDeploy
-    const Treasury = await this.environment.getArtifact('CourtTreasury', '@aragon/court')
+    const Treasury = await this.environment.getArtifact('CourtTreasury', '@1hive/celeste')
 
     if (treasury && treasury.address) await this._loadTreasury(Treasury, treasury.address)
     else await this._deployTreasury(Treasury)
@@ -71,7 +71,7 @@ module.exports = class extends BaseDeployer {
 
   async loadOrDeploySubscriptions() {
     const { subscriptions } = this.previousDeploy
-    const Subscriptions = await this.environment.getArtifact('CourtSubscriptions', '@aragon/court')
+    const Subscriptions = await this.environment.getArtifact('CourtSubscriptions', '@1hive/celeste')
 
     if (subscriptions && subscriptions.address) await this._loadSubscriptions(Subscriptions, subscriptions.address)
     else await this._deploySubscriptions(Subscriptions)
@@ -83,8 +83,8 @@ module.exports = class extends BaseDeployer {
 
     if (modulesGovernor === sender) {
       logger.info('Setting modules...')
-      const ids = [DISPUTE_MANAGER_ID, TREASURY_ID, VOTING_ID, JURORS_REGISTRY_ID, SUBSCRIPTIONS_ID]
-      const implementations = [this.disputes, this.treasury, this.voting, this.registry, this.subscriptions].map(i => i.address)
+      const ids = [DISPUTE_MANAGER_ID, TREASURY_ID, VOTING_ID, JURORS_REGISTRY_ID, SUBSCRIPTIONS_ID, BRIGHTID_REGISTER_ID]
+      const implementations = [this.disputes, this.treasury, this.voting, this.registry, this.subscriptions, this.config.brightIdRegister].map(i => i.address)
       await this.court.setModules(ids, implementations)
       logger.success('Modules set successfully')
     } else {
@@ -167,7 +167,7 @@ module.exports = class extends BaseDeployer {
       [court.penaltyPct, court.finalRoundReduction],
       [court.firstRoundJurorsNumber, court.appealStepFactor, court.maxRegularAppealRounds, court.finalRoundLockTerms],
       [court.appealCollateralFactor, court.appealConfirmCollateralFactor],
-      jurors.minActiveBalance
+      [jurors.minActiveBalance, jurors.minMaxPctTotalSupply, jurors.maxMaxPctTotalSupply]
     )
 
     const { address, transactionHash } = this.court
@@ -224,12 +224,7 @@ module.exports = class extends BaseDeployer {
     this.subscriptions = await Subscriptions.new(
       this.court.address,
       subscriptions.periodDuration,
-      subscriptions.feeToken.address,
-      subscriptions.feeAmount,
-      subscriptions.prePaymentPeriods,
-      subscriptions.resumePrePaidPeriods,
-      subscriptions.latePaymentPenaltyPct,
-      subscriptions.governorSharePct
+      subscriptions.feeToken.address
     )
 
     const { address, transactionHash } = this.subscriptions
@@ -242,7 +237,7 @@ module.exports = class extends BaseDeployer {
   async _verifyAragonCourt() {
     const court = this.previousDeploy.court
     if (!court || !court.verification) {
-      const url = await this.verifier.call(this.court, '@aragon/court', VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.court, '@1hive/celeste', VERIFICATION_HEADERS)
       const { address, transactionHash, version } = court
       this._saveDeploy({ court: { address, transactionHash, version, verification: url } })
     }
@@ -251,7 +246,7 @@ module.exports = class extends BaseDeployer {
   async _verifyDisputes() {
     const disputes = this.previousDeploy.disputes
     if (!disputes || !disputes.verification) {
-      const url = await this.verifier.call(this.disputes, '@aragon/court', VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.disputes, '@1hive/celeste', VERIFICATION_HEADERS)
       const { address, transactionHash, version } = disputes
       this._saveDeploy({ disputes: { address, transactionHash, version, verification: url } })
     }
@@ -260,7 +255,7 @@ module.exports = class extends BaseDeployer {
   async _verifyRegistry() {
     const registry = this.previousDeploy.registry
     if (!registry || !registry.verification) {
-      const url = await this.verifier.call(this.registry, '@aragon/court', VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.registry, '@1hive/celeste', VERIFICATION_HEADERS)
       const { address, transactionHash, version } = registry
       this._saveDeploy({ registry: { address, transactionHash, version, verification: url } })
     }
@@ -269,7 +264,7 @@ module.exports = class extends BaseDeployer {
   async _verifyVoting() {
     const voting = this.previousDeploy.voting
     if (!voting || !voting.verification) {
-      const url = await this.verifier.call(this.voting, '@aragon/court', VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.voting, '@1hive/celeste', VERIFICATION_HEADERS)
       const { address, transactionHash, version } = voting
       this._saveDeploy({ voting: { address, transactionHash, version, verification: url } })
     }
@@ -278,7 +273,7 @@ module.exports = class extends BaseDeployer {
   async _verifyTreasury() {
     const treasury = this.previousDeploy.treasury
     if (!treasury || !treasury.verification) {
-      const url = await this.verifier.call(this.treasury, '@aragon/court', VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.treasury, '@1hive/celeste', VERIFICATION_HEADERS)
       const { address, transactionHash, version } = treasury
       this._saveDeploy({ treasury: { address, transactionHash, version, verification: url } })
     }
@@ -287,7 +282,7 @@ module.exports = class extends BaseDeployer {
   async _verifySubscriptions() {
     const subscriptions = this.previousDeploy.subscriptions
     if (!subscriptions || !subscriptions.verification) {
-      const url = await this.verifier.call(this.subscriptions, '@aragon/court', VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.subscriptions, '@1hive/celeste', VERIFICATION_HEADERS)
       const { address, transactionHash, version } = subscriptions
       this._saveDeploy({ subscriptions: { address, transactionHash, version, verification: url } })
     }
@@ -321,6 +316,8 @@ module.exports = class extends BaseDeployer {
     logger.info(` - Appeal collateral factor:                ${court.appealCollateralFactor.toString()} ‱`)
     logger.info(` - Appeal confirmation collateral factor:   ${court.appealConfirmCollateralFactor.toString()} ‱`)
     logger.info(` - Minimum ANJ active balance :             ${tokenToString(jurors.minActiveBalance, jurors.token)}`)
+    logger.info(` - Min Max Pct Total Supply:                ${jurors.minMaxPctTotalSupply.toString()}`)
+    logger.info(` - Max Max Pct Total Supply:                ${jurors.maxMaxPctTotalSupply.toString()}`)
   }
 
   _printDisputesDeploy() {
@@ -336,6 +333,8 @@ module.exports = class extends BaseDeployer {
     logger.info(` - Controller:                              ${this.court.address}`)
     logger.info(` - Jurors token:                            ${jurors.token.symbol} at ${anjAddress}`)
     logger.info(` - Minimum ANJ active balance:              ${tokenToString(jurors.minActiveBalance, jurors.token)}`)
+    logger.info(` - Min Max Pct Total Supply:                ${jurors.minMaxPctTotalSupply.toString()}`)
+    logger.info(` - Max Max Pct Total Supply:                ${jurors.maxMaxPctTotalSupply.toString()}`)
     logger.info(` - Total ANJ active balance limit:          ${tokenToString(totalActiveBalanceLimit, jurors.token)}`)
   }
 

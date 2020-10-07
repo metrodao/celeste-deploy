@@ -52,6 +52,8 @@ module.exports = {
   jurors: {
     token:                         HNY,
     minActiveBalance:              bigExp(100, HNY.decimals),    // 100 HNY is the minimum balance jurors must activate to participate in the Court
+    minMaxPctTotalSupply:          bigExp(1, 15),             //  0.1% of the current total supply is the max a juror can activate when the total supply stake is activated
+    maxMaxPctTotalSupply:          bigExp(1, 16),             //  1% of the current total supply is the max a juror can activate when 0 stake is activated
   },
   subscriptions: {
     feeToken:                      HNY,                          // fee token for subscriptions is DAI
@@ -61,5 +63,8 @@ module.exports = {
     resumePrePaidPeriods:          bn(12),                       // 12 pre-paid periods when resuming activity (1 year)
     latePaymentPenaltyPct:         bn(1000),                     // late payment subscriptions are charged 20%
     governorSharePct:              bn(0),                        // 0% of the subscription fees
+  },
+  brightIdRegister: {
+    address: '0x001797759797edcdce090b391362a1012c50a06f'           // The BrightIdRegister address
   }
 }

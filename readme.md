@@ -12,7 +12,7 @@ npm run deploy:dai -- -n rinkeby
 
 Deploy the token faucet:
 ```
-npm run deploy:facuet -- -n rinkeby
+npm run deploy:faucet -- -n rinkeby
 ```
 
 Mint tokens for sender address:

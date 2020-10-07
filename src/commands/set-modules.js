@@ -11,14 +11,15 @@ const builder = {
   subscriptions: { describe: 'Set subscriptions module', type: 'string' },
   jurorsRegistry: { describe: 'Set jurors registry module', type: 'string' },
   disputeManager: { describe: 'Set dispute manager module', type: 'string' },
+  brightIdRegister: { describe: 'Set brightid register module', type: 'string' },
 }
 
-const handlerAsync = async (environment, { network, input, voting, treasury, subscriptions, jurorsRegistry, disputeManager }) => {
-  const requestedChanges = voting || treasury || subscriptions || jurorsRegistry || disputeManager
+const handlerAsync = async (environment, { network, input, voting, treasury, subscriptions, jurorsRegistry, disputeManager, brightIdRegister }) => {
+  const requestedChanges = voting || treasury || subscriptions || jurorsRegistry || disputeManager || brightIdRegister
   if (!requestedChanges) throw Error('Please indicate at least one module to be set')
 
   const config = require(path.resolve(process.cwd(), input))[network]
-  const modules = { voting, treasury, subscriptions, jurorsRegistry, disputeManager }
+  const modules = { voting, treasury, subscriptions, jurorsRegistry, disputeManager, brightIdRegister }
   const manager = new ControllerModulesManager(config, environment, modules)
   await manager.call()
 }

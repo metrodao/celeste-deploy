@@ -30,7 +30,7 @@ module.exports = class extends BaseDeployer {
 
   async loadCourt() {
     const { court } = this.previousDeploy
-    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@aragon/court')
+    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@1hive/celeste')
 
     if (court && court.address) await this._loadAragonCourt(AragonCourt, court.address)
     else throw Error('Missing previous Aragon Court deploy')
@@ -38,7 +38,7 @@ module.exports = class extends BaseDeployer {
 
   async loadOrDeployDisputes() {
     const { disputes } = this.previousDeploy
-    const DisputeManager = await this.environment.getArtifact('DisputeManager', '@aragon/court')
+    const DisputeManager = await this.environment.getArtifact('DisputeManager', '@1hive/celeste')
 
     if (disputes && disputes.address && disputes.version === VERSION) await this._loadDisputes(DisputeManager, disputes.address)
     else await this._deployDisputes(DisputeManager)
@@ -46,7 +46,7 @@ module.exports = class extends BaseDeployer {
 
   async loadOrDeployRegistry() {
     const { registry } = this.previousDeploy
-    const JurorsRegistry = await this.environment.getArtifact('JurorsRegistry', '@aragon/court')
+    const JurorsRegistry = await this.environment.getArtifact('JurorsRegistry', '@1hive/celeste')
 
     if (registry && registry.address && registry.version === VERSION) await this._loadRegistry(JurorsRegistry, registry.address)
     else await this._deployRegistry(JurorsRegistry)
@@ -54,7 +54,7 @@ module.exports = class extends BaseDeployer {
 
   async loadOrDeployVoting() {
     const { voting } = this.previousDeploy
-    const Voting = await this.environment.getArtifact('CRVoting', '@aragon/court')
+    const Voting = await this.environment.getArtifact('CRVoting', '@1hive/celeste')
 
     if (voting && voting.address && voting.version === VERSION) await this._loadVoting(Voting, voting.address)
     else await this._deployVoting(Voting)
@@ -165,7 +165,7 @@ module.exports = class extends BaseDeployer {
   async _verifyDisputes() {
     const disputes = this.previousDeploy.disputes
     if (!disputes || !disputes.verification) {
-      const url = await this.verifier.call(this.disputes, '@aragon/court', VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.disputes, '@1hive/celeste', VERIFICATION_HEADERS)
       const { address, transactionHash, version } = disputes
       this._saveDeploy({ disputes: { address, transactionHash, version, verification: url } })
     }
@@ -174,7 +174,7 @@ module.exports = class extends BaseDeployer {
   async _verifyRegistry() {
     const registry = this.previousDeploy.registry
     if (!registry || !registry.verification) {
-      const url = await this.verifier.call(this.registry, '@aragon/court', VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.registry, '@1hive/celeste', VERIFICATION_HEADERS)
       const { address, transactionHash, version } = registry
       this._saveDeploy({ registry: { address, transactionHash, version, verification: url } })
     }
@@ -183,7 +183,7 @@ module.exports = class extends BaseDeployer {
   async _verifyVoting() {
     const voting = this.previousDeploy.voting
     if (!voting || !voting.verification) {
-      const url = await this.verifier.call(this.voting, '@aragon/court', VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.voting, '@1hive/celeste', VERIFICATION_HEADERS)
       const { address, transactionHash, version } = voting
       this._saveDeploy({ voting: { address, transactionHash, version, verification: url } })
     }
@@ -203,6 +203,8 @@ module.exports = class extends BaseDeployer {
     logger.info(` - Controller:                              ${this.court.address}`)
     logger.info(` - Jurors token:                            ${jurors.token.symbol} at ${anjAddress}`)
     logger.info(` - Minimum ANJ active balance:              ${tokenToString(jurors.minActiveBalance, jurors.token)}`)
+    logger.info(` - Min Max Pct Total Supply:                ${jurors.minMaxPctTotalSupply.toString()}`)
+    logger.info(` - Max Max Pct Total Supply:                ${jurors.maxMaxPctTotalSupply.toString()}`)
     logger.info(` - Total ANJ active balance limit:          ${tokenToString(totalActiveBalanceLimit, jurors.token)}`)
   }
 

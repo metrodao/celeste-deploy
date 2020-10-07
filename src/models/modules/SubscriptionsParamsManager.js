@@ -18,7 +18,7 @@ module.exports = class extends BaseDeployer {
 
   async updateSubscriptionsConfigDirectly() {
     const { subscriptions: config, modules: { subscriptions: address } } = this.config
-    const Subscriptions = await this.environment.getArtifact('CourtSubscriptions', '@aragon/court')
+    const Subscriptions = await this.environment.getArtifact('CourtSubscriptions', '@1hive/celeste')
     const subscriptions = await Subscriptions.at(address)
 
     if (this.changes.feeToken) {
