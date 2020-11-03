@@ -21,6 +21,7 @@ module.exports = {
   governor: {                      // Agent of AN DAO
     funds:                         governor,
     config:                        governor,
+    feesUpdater:                   governor, // Must be updated post deployment to the newly created feesUpdater
     modules:                       governor,
   },
   clock: {
@@ -66,5 +67,10 @@ module.exports = {
   },
   brightIdRegister: {
     address: '0x001797759797edcdce090b391362a1012c50a06f'           // The BrightIdRegister address
+  },
+  feesUpdater: {
+    priceOracle: "0xEa6d3F03d3A7bFa02cC7Ab9AA1df5cDC515b3627", // Should the DAI token and HNY token above.
+    stableTokenAddress: "0x4ABE2999dea3332d2c798e92b81A0c1df1A6cc5f", // Should be the DAI token, need to update the price first though.
+    stableFees: [bigExp(10, 18), bigExp(18, 16), bigExp(1, 17)]
   }
 }

@@ -24,6 +24,7 @@ module.exports = class extends BaseDeployer {
     await this.loadOrDeployVoting()
     await this.loadOrDeployTreasury()
     await this.loadOrDeploySubscriptions()
+    await this.loadOrDeployFeesUpdater()
     await this.setModules()
     await this.transferGovernor()
     await this.verifyContracts()
@@ -77,6 +78,16 @@ module.exports = class extends BaseDeployer {
     else await this._deploySubscriptions(Subscriptions)
   }
 
+  async loadOrDeployFeesUpdater() {
+    const { feesUpdater } = this.previousDeploy
+    const FeesUpdater = await this.environment.getArtifact('FeesUpdater', '@1hive/celeste')
+
+    if (feesUpdater && feesUpdater.address) await this._loadFeesUpdater(FeesUpdater, feesUpdater.address)
+    else await this._deployFeesUpdater(FeesUpdater)
+
+
+  }
+
   async setModules() {
     const sender = await this.environment.getSender()
     const modulesGovernor = await this.court.getModulesGovernor()
@@ -95,7 +106,19 @@ module.exports = class extends BaseDeployer {
   async transferGovernor() {
     const sender = await this.environment.getSender()
     const currentGovernor = await this.court.getModulesGovernor()
+    const currentFeesUpdater = await this.court.getFeesUpdater()
+    const currentConfigGovernor = await this.court.getConfigGovernor()
     const { governor: { modules: governor } } = this.config
+
+    if (currentFeesUpdater !== this.feesUpdater.address) {
+      logger.info(`Transferring fees updater to ${this.feesUpdater.address}`)
+      await this.court.changeFeesUpdater(this.feesUpdater.address)
+    }
+
+    if (currentConfigGovernor === sender) {
+      logger.info(`Transferring config governor to ${this.config.governor.config.address}`)
+      await this.court.changeConfigGovernor(this.config.governor.config.address)
+    }
 
     if (currentGovernor === sender) {
       logger.info(`Transferring modules governor to ${governor} ...`)
@@ -151,6 +174,11 @@ module.exports = class extends BaseDeployer {
     this.subscriptions = await Subscriptions.at(address)
   }
 
+  async _loadFeesUpdater(FeesUpdater, address) {
+    logger.warn(`Using previous deployed FeesUpdater instance at ${address}`)
+    this.feesUpdater = await FeesUpdater.at(address)
+  }
+
   /** deploying methods **/
 
   async _deployAragonCourt(AragonCourt) {
@@ -160,7 +188,7 @@ module.exports = class extends BaseDeployer {
 
     this.court = await AragonCourt.new(
       [clock.termDuration, clock.firstTermStartTime],
-      [governor.funds.address, governor.config.address, sender],
+      [governor.funds.address, sender, governor.feesUpdater.address, sender],
       court.feeToken.address,
       [court.jurorFee, court.draftFee, court.settleFee],
       [court.evidenceTerms, court.commitTerms, court.revealTerms, court.appealTerms, court.appealConfirmTerms],
@@ -230,6 +258,23 @@ module.exports = class extends BaseDeployer {
     const { address, transactionHash } = this.subscriptions
     logger.success(`Created Subscriptions instance at ${address}`)
     this._saveDeploy({ subscriptions: { address, transactionHash, version: VERSION }})
+  }
+
+  async _deployFeesUpdater(FeesUpdater) {
+    if (!this.court.address) throw Error('AragonCourt has not been deployed yet')
+    this._printFeesUpdaterDeploy()
+    const { feesUpdater } = this.config
+
+    this.feesUpdater = await FeesUpdater.new(
+      feesUpdater.priceOracle,
+      this.court.address,
+      feesUpdater.stableTokenAddress,
+      feesUpdater.stableFees
+    )
+
+    const { address, transactionHash } = this.feesUpdater
+    logger.success(`Created Fees Updater instance at ${address}`)
+    this._saveDeploy({ feesUpdater: { address, transactionHash, version: VERSION }})
   }
 
   /** verifying methods **/
@@ -359,5 +404,9 @@ module.exports = class extends BaseDeployer {
     logger.info(` - Resume pre-paid periods:                 ${subscriptions.resumePrePaidPeriods.toString()} periods`)
     logger.info(` - Late payment penalty:                    ${subscriptions.latePaymentPenaltyPct.toString()} ‱`)
     logger.info(` - Governor share:                          ${subscriptions.governorSharePct.toString()} ‱`)
+  }
+
+  _printFeesUpdaterDeploy() {
+    logger.info(`Deploying Fees Updater contract ${VERSION} with config...`)
   }
 }
