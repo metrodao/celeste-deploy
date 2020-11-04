@@ -66,11 +66,11 @@ module.exports = {
     governorSharePct:              bn(0),                        // 0% of the subscription fees
   },
   brightIdRegister: {
-    address: '0x001797759797edcdce090b391362a1012c50a06f'           // The BrightIdRegister address
+    address: '0xd1ec79ba01130a0ac3bb4f1df25b32f796fc9abc'           // The BrightIdRegister address
   },
   feesUpdater: {
-    priceOracle: "0xEa6d3F03d3A7bFa02cC7Ab9AA1df5cDC515b3627", // Should the DAI token and HNY token above.
-    stableTokenAddress: "0x4ABE2999dea3332d2c798e92b81A0c1df1A6cc5f", // Should be the DAI token, need to update the price first though.
+    priceOracle: "0x9c88252DB404C00B9a412Bb35955C846B2Aa92d7", // Using HNY and DAI, with HNY as incentive token
+    stableTokenAddress: DAI.address,
     stableFees: [bigExp(10, 18), bigExp(18, 16), bigExp(1, 17)]
   }
 }

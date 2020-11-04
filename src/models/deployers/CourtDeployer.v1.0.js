@@ -84,8 +84,6 @@ module.exports = class extends BaseDeployer {
 
     if (feesUpdater && feesUpdater.address) await this._loadFeesUpdater(FeesUpdater, feesUpdater.address)
     else await this._deployFeesUpdater(FeesUpdater)
-
-
   }
 
   async setModules() {
@@ -116,15 +114,15 @@ module.exports = class extends BaseDeployer {
     }
 
     if (currentConfigGovernor === sender) {
-      logger.info(`Transferring config governor to ${this.config.governor.config.address}`)
-      await this.court.changeConfigGovernor(this.config.governor.config.address)
+      logger.info(`Transferring config governor to ${this.config.governor.config.voting}`)
+      await this.court.changeConfigGovernor(this.config.governor.config.voting)
     }
 
     if (currentGovernor === sender) {
       logger.info(`Transferring modules governor to ${governor} ...`)
-      await this.court.changeModulesGovernor(governor.address)
+      await this.court.changeModulesGovernor(governor.voting)
       logger.success(`Modules governor transferred successfully to ${governor}`)
-    } else if (currentGovernor === governor.address) {
+    } else if (currentGovernor === governor.voting) {
       logger.success(`Modules governor is already set to ${governor}`)
     } else {
       logger.warn('Modules governor is already set to another address')
@@ -188,7 +186,7 @@ module.exports = class extends BaseDeployer {
 
     this.court = await AragonCourt.new(
       [clock.termDuration, clock.firstTermStartTime],
-      [governor.funds.address, sender, governor.feesUpdater.address, sender],
+      [governor.funds.address, sender, sender, sender],
       court.feeToken.address,
       [court.jurorFee, court.draftFee, court.settleFee],
       [court.evidenceTerms, court.commitTerms, court.revealTerms, court.appealTerms, court.appealConfirmTerms],

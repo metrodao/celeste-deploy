@@ -4,10 +4,10 @@ const rpc =     governor('0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1')    // Gan
 const aragen =  governor('0xb4124cEB3451635DAcedd11767f004d8a28c6eE7')    // Aragon first deterministic address
 const ropsten = governor('0x0090aED150056316E37FE6DFa10Dc63E79D173B6')    // EOA
 
-const rinkeby = governor({ // https://rinkeby.aragon.org/#/andao
-  agent:        '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',             // Agent of AN DAO Rinkeby
-  voting:       '0xb0c839957bc47541d747e5238c06990e3a41c2a3',             // Voting of AN DAO Rinkeby
-  tokenManager: '0x0cc31e2d5117d25fe50ee9d569613851e6bb0dd9',             // Token Manager of AN DAO Rinkeby
+const rinkeby = governor({
+  agent:        '0x77529e8deddb1e63c2cd30b62374c08260382aca',             // Agent of AN DAO Rinkeby
+  voting:       '0x4410027dc24361ab4737d1893c423172c7f76902',             // Voting of AN DAO Rinkeby
+  tokenManager: '0x0a8063d332b14a3a7dcea444d68b94b3da7e18fc',             // Token Manager of AN DAO Rinkeby
 })
 
 const mainnet = governor({ // https://mainnet.aragon.org/#/network
