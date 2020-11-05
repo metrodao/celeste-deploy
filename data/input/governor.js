@@ -5,9 +5,9 @@ const aragen =  governor('0xb4124cEB3451635DAcedd11767f004d8a28c6eE7')    // Ara
 const ropsten = governor('0x0090aED150056316E37FE6DFa10Dc63E79D173B6')    // EOA
 
 const rinkeby = governor({
-  agent:        '0x77529e8deddb1e63c2cd30b62374c08260382aca',             // Agent of AN DAO Rinkeby
-  voting:       '0x4410027dc24361ab4737d1893c423172c7f76902',             // Voting of AN DAO Rinkeby
-  tokenManager: '0x0a8063d332b14a3a7dcea444d68b94b3da7e18fc',             // Token Manager of AN DAO Rinkeby
+  agent:        '0xc06141c223e23846767a8b5664f155dcc0fb1c3c',             // Agent of HP DAO Rinkeby
+  voting:       '0xaf5ce96c7cf99aded2f3dac7bfc3edb09f6e655c',             // Voting of HP DAO Rinkeby
+  tokenManager: '0xeaf5598c4b4fe366f296188029e04d0bcc354fcf',             // Token Manager of HP DAO Rinkeby
 })
 
 const mainnet = governor({ // https://mainnet.aragon.org/#/network

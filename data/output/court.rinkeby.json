@@ -1,37 +1,37 @@
 {
   "court": {
-    "address": "0x1CDcc48B668F4740DB9cf07ee61Eb41B6B9cFD26",
-    "transactionHash": "0x50c8524a98e1f0cfedba895e62f1300ed1e22605ad0300928d518a2aa0ce6c07",
+    "address": "0xD22D39b3C19ba77938C8f6f36Dbf81f5F220feFB",
+    "transactionHash": "0x2ca2e2c3fa93ca5e1282259387f375bbe33cddeb13e91484a1e6867a78ed6c93",
     "version": "v1.0"
   },
   "disputes": {
-    "address": "0x0db037b2b31a30C49415c45199bd5dd897c36Ac7",
-    "transactionHash": "0x47b9f0e000873d342de70bc221da3d945b683e0525a7ecf4d2debeb3e12783ab",
+    "address": "0x5Fe67f9B8CBE54c159f8C9Af140B789431D19735",
+    "transactionHash": "0x8bb355ba37b5afdf4025c57c9255619bdf30963b5e54690a719b4348d8e2f493",
     "version": "v1.0"
   },
   "registry": {
-    "address": "0xDb5b222f0AA2A70312aa7269b014181441DDfAaF",
-    "transactionHash": "0x785332a1b3818e2ca819073aa77b16d746f3520b0287ebb0f4850bb45a2d07a6",
+    "address": "0x23ae567Bd9430637c90883F1D5396627dA93cCb8",
+    "transactionHash": "0x73305b7cf6439f0733940d0b48c501ca54be1e1e53c82080a72689f6b815ede4",
     "version": "v1.0"
   },
   "voting": {
-    "address": "0xc4ff2FE7D579D1106A91E10b3FE2224400E04Da2",
-    "transactionHash": "0xd7c2a8fb92b87e45e15baf692ce4cb2c61d7b439f8db9dc4a82af99ef39d295f",
+    "address": "0xd11E0e981058E33DAf8F4dC67c192DAf9FcAd7EE",
+    "transactionHash": "0x5493a31ea19d98a859db70774aef9dc5db7f8bdd84858c34e37b7fc494294c5e",
     "version": "v1.0"
   },
   "treasury": {
-    "address": "0x1369d78F46A7ee786F7B7eddCcF5B97B9EA1f164",
-    "transactionHash": "0x406d0e682adcccdcff451990c0b9a6a431689a6b864eae1e04e1866f9b56c999",
+    "address": "0x2c9404fe6714E77fBafCF4E5F80206EE16064e56",
+    "transactionHash": "0x3f4face6c6cbb5f9a98cb9669a1fc07b49864b9b8f8b5db0ec6995aade31498b",
     "version": "v1.0"
   },
   "subscriptions": {
-    "address": "0xF16CA2D28Ba2669F0134276ccA63dBE30161fbcd",
-    "transactionHash": "0xc4ee6ad38234f50f6c5edd88efc937743fc45df09cd9fdb3f0faf743cb9737d6",
+    "address": "0x9B8429D2BE2481c1b27fdC637724C7b6aF8bf8ad",
+    "transactionHash": "0xcf9920dddccb3fe413395bfc5581ca272da1e13deb7aef80c601ba745b9a3d75",
     "version": "v1.0"
   },
   "feesUpdater": {
-    "address": "0x51AE61769A97f9D818261BbA7fD9B11e21017Fe3",
-    "transactionHash": "0x69a43562d79abaebc2b47dae2990670029e8cedc13408359e3278ca0052701c5",
+    "address": "0x63849b0D64Ae3b01d2c8640900a69c6915C99aeC",
+    "transactionHash": "0x3e439050461898809af00c0a307aa16cac550eb4a7aa34e8835c30fb6963d6a8",
     "version": "v1.0"
   }
 }

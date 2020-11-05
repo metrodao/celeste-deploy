@@ -31,7 +31,7 @@ module.exports = {
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {
-    feeToken:                      DAI,                          // fee token for the court is DAI
+    feeToken:                      HNY,                          // fee token for the court is DAI
     evidenceTerms:                 bn(21),                       // evidence period lasts 21 terms (7 days)
     commitTerms:                   bn(6),                        // vote commits last 6 terms (2 days)
     revealTerms:                   bn(6),                        // vote reveals last 6 terms (2 days)

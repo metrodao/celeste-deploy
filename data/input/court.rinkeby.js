@@ -29,7 +29,7 @@ module.exports = {
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {
-    feeToken:                      DAI,                          // fee token for the court is DAI
+    feeToken:                      HNY,                          // fee token for the court is DAI
     evidenceTerms:                 bn(21),                       // evidence period lasts 21 terms (7 days)
     commitTerms:                   bn(6),                        // vote commits last 6 terms (2 days)
     revealTerms:                   bn(6),                        // vote reveals last 6 terms (2 days)
@@ -66,11 +66,12 @@ module.exports = {
     governorSharePct:              bn(0),                        // 0% of the subscription fees
   },
   brightIdRegister: {
-    address: '0xd1ec79ba01130a0ac3bb4f1df25b32f796fc9abc'           // The BrightIdRegister address
+    address: '0xa99e62a92308e56a8df30506fa2ce5586bc126b4'           // The BrightIdRegister address
   },
   feesUpdater: {
     priceOracle: "0x9c88252DB404C00B9a412Bb35955C846B2Aa92d7", // Using HNY and DAI, with HNY as incentive token
     stableTokenAddress: DAI.address,
     stableFees: [bigExp(10, 18), bigExp(18, 16), bigExp(1, 17)]
+    // juror fee = 10, draft fee = 0.18, settle fee = 0.1
   }
 }
