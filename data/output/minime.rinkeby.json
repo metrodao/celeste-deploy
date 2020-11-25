@@ -1,10 +1,10 @@
 {
-  "DAI": {
-    "address": "0x848a3752aEcF096B68deb2143714F6b62F899C8e",
-    "transactionHash": "0x2cc2d5f08e832b1bc5325dd85db26fc8d4d84a4ca189662cb254ab322cc21da0"
-  },
   "HNY": {
-    "address": "0x658BD9EE8788014b3DBf2bf0d66af344d84a5aA1",
-    "transactionHash": "0x79b3a4d1294ff20ae4dbaacdf3427d75baf23c71dde86f40bbbf88f111952b97"
+    "address": "0x6644F3Afb267273c60D3308b62afB36F98f158f9",
+    "transactionHash": "0x808e5bddad9747176016d95ad4e8ce045540ec681059bc81e53438a33e232e22"
+  },
+  "DAI": {
+    "address": "0xa1841b2A23C894712c426833116B0362DE929546",
+    "transactionHash": "0x3429b1b4a457a66f886bddac8ae849ca2df336cfd210b1d0a8bc0b84cb7cdd97"
   }
 }

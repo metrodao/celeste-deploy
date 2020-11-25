@@ -5,7 +5,7 @@ const environments = {
     factory:          undefined,                                      // Will be deployed unless specified
   },
   rinkeby: {
-    controller:       undefined, 				                              // Will be set to the sender
+    controller:       undefined, 				                      // Will be set to the sender
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
   },
   mainnet: {

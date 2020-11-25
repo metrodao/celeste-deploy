@@ -15,14 +15,14 @@ module.exports = {
       {
         symbol:   'HNY',
         address:  getTokenAddress('rinkeby', 'HNY'),    // ANT address in Rinkeby
-        period:   1,                                                        // The ANT quota period lasts 1 second
-        amount:   bigExp(10000000, 18)                                   // Accounts will be allowed to withdraw 10,000 ANT per week maximum
+        period:   1000,                                                        // The ANT quota period lasts 1 second
+        amount:   bigExp(10, 18)                                   // Accounts will be allowed to withdraw 10 HNY every 16 mins
       },
       {
         symbol:   'DAI',
         address:  getTokenAddress('rinkeby', 'DAI'),    // Fee token (DAI) address in Rinkeby
-        period:   1,                                                        // The fee token quota period lasts 1 second
-        amount:   bigExp(10000000, 18)                                   // Accounts will be allowed to withdraw 10,000 DAI per week maximum
+        period:   1000,                                                        // The fee token quota period lasts 1 second
+        amount:   bigExp(10000, 18)                                   // Accounts will be allowed to withdraw 10000 DAI every 16 mins
       }
     ]
   },
