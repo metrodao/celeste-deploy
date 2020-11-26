@@ -68,7 +68,7 @@ module.exports = {
     governorSharePct:              bn(0),                        // Not used
   },
   brightIdRegister: {
-    address: '0xf75b46cdae8a14e549c02545982268434df772d3'           // The BrightIdRegister address
+    address: '0x5f29dfd3254318684dd689a743675fd5f1623a20'           // The BrightIdRegister address
   },
   feesUpdater: {
     priceOracle: "0xeC99dd9362E86299013bDE76E878ded1db1fab90", // Using HNY and DAI, with HNY as incentive token
