@@ -32,6 +32,7 @@ module.exports = {
   },
   court: {
     feeToken:                      HNY,                             // fee token for the court is DAI
+    maxRulingOptions:              bn(2),                        // max juror selectable outcomes for disputes
     evidenceTerms:                 bn(1),                        // evidence period lasts 21 terms (7 days)
     commitTerms:                   bn(1),                        // vote commits last 6 terms (2 days)
     revealTerms:                   bn(1),                        // vote reveals last 6 terms (2 days)
@@ -53,7 +54,6 @@ module.exports = {
     skippedDisputes:               2,                               // number of dispute to skip
   },
   jurors: {
-    token:                         HNY,
     minActiveBalance:              bigExp(5, 17),             // 0.5 HNY is the minimum balance jurors must activate to participate in the Court
     minMaxPctTotalSupply:          bigExp(1, 15),             // 0.1% of the current total supply is the max a juror can activate when the total supply stake is activated
     maxMaxPctTotalSupply:          bigExp(1, 16),             // 1% of the current total supply is the max a juror can activate when 0 stake is activated
@@ -68,7 +68,7 @@ module.exports = {
     governorSharePct:              bn(0),                        // Not used
   },
   brightIdRegister: {
-    address: '0x5f29dfd3254318684dd689a743675fd5f1623a20'           // The BrightIdRegister address
+    address: '0x5f29dfd3254318684dd689a743675fd5f1623a20'      // The BrightIdRegister address, requires deploying first part of DAO
   },
   feesUpdater: {
     priceOracle: "0xeC99dd9362E86299013bDE76E878ded1db1fab90", // Using HNY and DAI, with HNY as incentive token

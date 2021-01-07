@@ -27,7 +27,7 @@ contract('CourtDeployer v1.0', ([_, sender]) => {
 
     const MiniMeToken = await environment.getArtifact('MiniMeToken', '@aragon/minime')
     ANJ = await MiniMeToken.new(ZERO_ADDRESS, ZERO_ADDRESS, SNAPSHOT_BLOCK, 'Aragon Network Juror Token', 18, 'ANJ', true)
-    Config.jurors.token.address = ANJ.address
+    Config.court.feeToken.address = ANJ.address
   })
 
   beforeEach('deploy', async () => {

@@ -20,7 +20,7 @@ const handlerAsync = async (environment, { network, input, output: outputDir, ve
   const tokenFilepath = path.resolve(process.cwd(), `${tokenOutputDir}.${network}.json`)
   const tokenDeploy = fs.existsSync(tokenFilepath) ? require(tokenFilepath) : {}
 
-  const jurorToken = config.jurors.token
+  const jurorToken = config.court.feeToken
   if (!jurorToken.address && tokenDeploy[jurorToken.symbol]) {
     jurorToken.address = tokenDeploy[jurorToken.symbol].address
   }

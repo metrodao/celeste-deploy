@@ -189,9 +189,10 @@ module.exports = class extends BaseDeployer {
       [governor.funds.address, sender, sender, sender],
       court.feeToken.address,
       [court.jurorFee, court.draftFee, court.settleFee],
-      [court.evidenceTerms, court.commitTerms, court.revealTerms, court.appealTerms, court.appealConfirmTerms],
+      court.maxRulingOptions,
+      [court.evidenceTerms, court.commitTerms, court.revealTerms, court.appealTerms, court.appealConfirmTerms,
+        court.firstRoundJurorsNumber, court.appealStepFactor, court.maxRegularAppealRounds, court.finalRoundLockTerms],
       [court.penaltyPct, court.finalRoundReduction],
-      [court.firstRoundJurorsNumber, court.appealStepFactor, court.maxRegularAppealRounds, court.finalRoundLockTerms],
       [court.appealCollateralFactor, court.appealConfirmCollateralFactor],
       [jurors.minActiveBalance, jurors.minMaxPctTotalSupply, jurors.maxMaxPctTotalSupply]
     )
@@ -214,11 +215,11 @@ module.exports = class extends BaseDeployer {
     if (!this.court.address) throw Error('AragonCourt has not been deployed yet')
     const { court, jurors } = this.config
 
-    const anj = jurors.token.address || this.anj.address
+    const anj = court.feeToken.address || this.anj.address
     const totalActiveBalanceLimit = jurors.minActiveBalance.mul(MAX_UINT64.div(court.finalRoundWeightPrecision))
     this._printRegistryDeploy(anj, totalActiveBalanceLimit)
 
-    this.registry = await JurorsRegistry.new(this.court.address, anj, totalActiveBalanceLimit)
+    this.registry = await JurorsRegistry.new(this.court.address, totalActiveBalanceLimit)
     const { address, transactionHash } = this.registry
     logger.success(`Created JurorsRegistry instance at ${address}`)
     this._saveDeploy({ registry: { address, transactionHash, version: VERSION }})
@@ -358,7 +359,7 @@ module.exports = class extends BaseDeployer {
     logger.info(` - Final round lock terms:                  ${court.finalRoundLockTerms.toString()}`)
     logger.info(` - Appeal collateral factor:                ${court.appealCollateralFactor.toString()} ‱`)
     logger.info(` - Appeal confirmation collateral factor:   ${court.appealConfirmCollateralFactor.toString()} ‱`)
-    logger.info(` - Minimum ANJ active balance :             ${tokenToString(jurors.minActiveBalance, jurors.token)}`)
+    logger.info(` - Minimum ANJ active balance :             ${tokenToString(jurors.minActiveBalance, court.feeToken)}`)
     logger.info(` - Min Max Pct Total Supply:                ${jurors.minMaxPctTotalSupply.toString()}`)
     logger.info(` - Max Max Pct Total Supply:                ${jurors.maxMaxPctTotalSupply.toString()}`)
   }
@@ -374,11 +375,11 @@ module.exports = class extends BaseDeployer {
     const { jurors } = this.config
     logger.info(`Deploying JurorsRegistry contract ${VERSION} with config:`)
     logger.info(` - Controller:                              ${this.court.address}`)
-    logger.info(` - Jurors token:                            ${jurors.token.symbol} at ${anjAddress}`)
-    logger.info(` - Minimum ANJ active balance:              ${tokenToString(jurors.minActiveBalance, jurors.token)}`)
+    logger.info(` - Jurors token:                            ${this.config.court.feeToken.symbol} at ${anjAddress}`)
+    logger.info(` - Minimum ANJ active balance:              ${tokenToString(jurors.minActiveBalance, this.config.court.feeToken)}`)
     logger.info(` - Min Max Pct Total Supply:                ${jurors.minMaxPctTotalSupply.toString()}`)
     logger.info(` - Max Max Pct Total Supply:                ${jurors.maxMaxPctTotalSupply.toString()}`)
-    logger.info(` - Total ANJ active balance limit:          ${tokenToString(totalActiveBalanceLimit, jurors.token)}`)
+    logger.info(` - Total ANJ active balance limit:          ${tokenToString(totalActiveBalanceLimit, this.config.court.feeToken)}`)
   }
 
   _printVotingDeploy() {

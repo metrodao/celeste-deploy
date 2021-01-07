@@ -111,7 +111,7 @@ module.exports = class extends BaseDeployer {
     if (!this.court.address) throw Error('AragonCourt has not been deployed yet')
     const { court, jurors } = this.config
 
-    const anj = jurors.token.address || this.anj.address
+    const anj = court.feeToken.address || this.anj.address
     const totalActiveBalanceLimit = jurors.minActiveBalance.mul(MAX_UINT64.div(court.finalRoundWeightPrecision))
     this._printRegistryDeploy(anj, totalActiveBalanceLimit)
 
@@ -201,11 +201,11 @@ module.exports = class extends BaseDeployer {
     const { jurors } = this.config
     logger.info(`Deploying JurorsRegistry contract ${VERSION} with config:`)
     logger.info(` - Controller:                              ${this.court.address}`)
-    logger.info(` - Jurors token:                            ${jurors.token.symbol} at ${anjAddress}`)
-    logger.info(` - Minimum ANJ active balance:              ${tokenToString(jurors.minActiveBalance, jurors.token)}`)
+    logger.info(` - Jurors token:                            ${court.feeToken.symbol} at ${anjAddress}`)
+    logger.info(` - Minimum ANJ active balance:              ${tokenToString(jurors.minActiveBalance, court.feeToken)}`)
     logger.info(` - Min Max Pct Total Supply:                ${jurors.minMaxPctTotalSupply.toString()}`)
     logger.info(` - Max Max Pct Total Supply:                ${jurors.maxMaxPctTotalSupply.toString()}`)
-    logger.info(` - Total ANJ active balance limit:          ${tokenToString(totalActiveBalanceLimit, jurors.token)}`)
+    logger.info(` - Total ANJ active balance limit:          ${tokenToString(totalActiveBalanceLimit, court.feeToken)}`)
   }
 
   _printVotingDeploy() {

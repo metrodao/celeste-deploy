@@ -73,7 +73,7 @@ module.exports = class extends BaseDeployer {
     logger.info(` - Final round lock terms:                  ${court.finalRoundLockTerms.toString()}`)
     logger.info(` - Appeal collateral factor:                ${court.appealCollateralFactor.toString()} ‱`)
     logger.info(` - Appeal confirmation collateral factor:   ${court.appealConfirmCollateralFactor.toString()} ‱`)
-    logger.info(` - Minimum ANJ active balance :             ${tokenToString(jurors.minActiveBalance, jurors.token)}`)
+    logger.info(` - Minimum ANJ active balance :             ${tokenToString(jurors.minActiveBalance, court.feeToken)}`)
     logger.info(` - Min Max Pct Total Supply:                ${jurors.minMaxPctTotalSupply.toString()}`)
     logger.info(` - Max Max Pct Total Supply:                ${jurors.maxMaxPctTotalSupply.toString()}`)
   }

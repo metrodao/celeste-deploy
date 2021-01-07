@@ -20,7 +20,7 @@
     "set:subscriptions-params": "node ./bin/index.js set-subscriptions-params --verbose"
   },
   "dependencies": {
-    "@1hive/celeste": "0.1.3",
+    "@1hive/celeste": "^0.1.4",
     "@aragon/apps-agent": "^2.0.0",
     "@aragon/apps-token-manager": "^2.1.0",
     "@aragon/apps-voting": "^2.1.0",
