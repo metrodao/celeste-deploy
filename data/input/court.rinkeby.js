@@ -39,9 +39,9 @@ module.exports = {
     appealTerms:                   bn(1),                        // appeals last 6 terms (2 days)
     appealConfirmTerms:            bn(1),                        // appeal confirmations last 6 terms (2 days)
     maxJurorsPerDraftBatch:        bn(81),                       // max number of jurors drafted per batch
-    jurorFee:                      bigExp(33, 15),            // 10 / 300 (hny price) fee tokens for juror fees
-    draftFee:                      bigExp(6, 14),             // 0.18 / 300 (hny price) fee tokens for draft fees
-    settleFee:                     bigExp(33, 13),            // 0.1 / 300 (hny price) fee tokens for settle fees
+    jurorFee:                      bigExp(33, 15),            // $10 / 300 (hny price) fee tokens for juror fees
+    draftFee:                      bigExp(6, 14),             // $0.18 / 300 (hny price) fee tokens for draft fees paid in celeste fees and earned for each juror drafted
+    settleFee:                     bigExp(33, 13),            // $0.1 / 300 (hny price) fee tokens for settle fees paid in celeste fees and earned for each juror settled
     penaltyPct:                    bn(1000),                     // 10% of the min active balance will be locked to each drafted juror
     finalRoundReduction:           bn(5000),                     // 50% of discount for final rounds
     firstRoundJurorsNumber:        bn(3),                        // disputes will start with 3 jurors
@@ -68,10 +68,10 @@ module.exports = {
     governorSharePct:              bn(0),                        // Not used
   },
   brightIdRegister: {
-    address: '0x5f29dfd3254318684dd689a743675fd5f1623a20'      // The BrightIdRegister address, requires deploying first part of DAO
+    address: '0xc4841272033320735b11c4afb75c261ef6d8f3ec'      // The BrightIdRegister address, requires deploying first part of DAO
   },
   feesUpdater: {
-    priceOracle: "0xeC99dd9362E86299013bDE76E878ded1db1fab90", // Using HNY and DAI, with HNY as incentive token
+    priceOracle: "0xF0048Ef1fCef06c943b1ce1dF26506c8980A4ece", // Using HNY and DAI, with HNY as incentive token
     stableTokenAddress: DAI.address,
     stableFees: [bigExp(10, 18), bigExp(18, 16), bigExp(1, 17)]
     // juror fee = 10, draft fee = 0.18, settle fee = 0.1
