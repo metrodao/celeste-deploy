@@ -1,5 +1,5 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
-const { rinkeby: governor } = require('./governor')
+const { xdai: governor } = require('./governor')
 const { requireOutput, getAddressIfDefined } = require('../../src/helpers/require-output')
 
 // 8 hours
@@ -10,13 +10,13 @@ const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minu
 const HNY = {
   symbol: 'HNY',
   decimals: 18,
-  address: requireOutput('minime.rinkeby', getAddressIfDefined('HNY'))
+  address: requireOutput('minime.xdai', getAddressIfDefined('HNY'))
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: requireOutput('minime.rinkeby', getAddressIfDefined('DAI'))
+  address: requireOutput('minime.xdai', getAddressIfDefined('DAI'))
 }
 
 module.exports = {
@@ -68,12 +68,12 @@ module.exports = {
     governorSharePct:              bn(0),                        // Not used
   },
   brightIdRegister: {
-    address: '0xeaed9896d5cf193441d5e8e685c244dcd0af2f0a'      // The BrightIdRegister address, requires deploying first part of DAO
+    address: ""      // The BrightIdRegister address, requires deploying first part of DAO
   },
   feesUpdater: {
-    priceOracle: "0xF0048Ef1fCef06c943b1ce1dF26506c8980A4ece", // Using HNY and DAI, with HNY as incentive token
+    priceOracle: "0x8af13Ba3Fe8C4279D868DD0720f989EA03692E29", // Using HNY and DAI, with HNY as incentive token
     stableTokenAddress: DAI.address,
     stableFees: [bigExp(10, 18), bigExp(18, 16), bigExp(1, 17)]
-    // juror fee = 10, draft fee = 0.18, settle fee = 0.1
+    // juror fee = 10, draft fee = 0.18, settle fee = 0.1 in xdai
   }
 }

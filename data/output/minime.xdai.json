@@ -1,0 +1,10 @@
+{
+  "HNY": {
+    "address": "0x6F937495013C7DC42aF752d3E0BcC090bd34F7AB",
+    "transactionHash": "0xbf382550c476b2facc1196750f099edbbd08f1cda593a6801e6256de74b6382a"
+  },
+  "DAI": {
+    "address": "0x09327b72157cFe804FEEe57dfCEb50A0CA1Af26a",
+    "transactionHash": "0x37cff663807e01cea87c9db14b9446f23743e639fe7062187463f94bc9c1c19b"
+  }
+}
