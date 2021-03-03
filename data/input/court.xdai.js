@@ -2,9 +2,7 @@ const { bn, bigExp } = require('../../src/helpers/numbers')
 const { xdai: governor } = require('./governor')
 const { requireOutput, getAddressIfDefined } = require('../../src/helpers/require-output')
 
-// 8 hours
-// const TERM_DURATION = 60 * 60 * 8
-const TERM_DURATION = 60 * 10                                             // 10 minutes
+const TERM_DURATION = 60 * 60 * 8 // 8 hours
 const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minutes from now
 
 const HNY = {
@@ -33,25 +31,25 @@ module.exports = {
   court: {
     feeToken:                      HNY,                             // fee token for the court is DAI
     maxRulingOptions:              bn(2),                        // max juror selectable outcomes for disputes
-    evidenceTerms:                 bn(1),                        // evidence period lasts 21 terms (7 days)
-    commitTerms:                   bn(1),                        // vote commits last 6 terms (2 days)
-    revealTerms:                   bn(1),                        // vote reveals last 6 terms (2 days)
-    appealTerms:                   bn(1),                        // appeals last 6 terms (2 days)
-    appealConfirmTerms:            bn(1),                        // appeal confirmations last 6 terms (2 days)
+    evidenceTerms:                 bn(21),                       // evidence period lasts 21 terms (7 days)
+    commitTerms:                   bn(6),                        // vote commits last 6 terms (2 days)
+    revealTerms:                   bn(6),                        // vote reveals last 6 terms (2 days)
+    appealTerms:                   bn(6),                        // appeals last 6 terms (2 days)
+    appealConfirmTerms:            bn(6),                        // appeal confirmations last 6 terms (2 days)
     maxJurorsPerDraftBatch:        bn(81),                       // max number of jurors drafted per batch
     jurorFee:                      bigExp(33, 15),            // $10 / 300 (hny price) fee tokens for juror fees
     draftFee:                      bigExp(6, 14),             // $0.18 / 300 (hny price) fee tokens for draft fees paid in celeste fees and earned for each juror drafted
     settleFee:                     bigExp(33, 13),            // $0.1 / 300 (hny price) fee tokens for settle fees paid in celeste fees and earned for each juror settled
-    penaltyPct:                    bn(1000),                     // 10% of the min active balance will be locked to each drafted juror
+    penaltyPct:                    bn(3000),                     // 30% of the min active balance will be locked to each drafted juror
     finalRoundReduction:           bn(5000),                     // 50% of discount for final rounds
     firstRoundJurorsNumber:        bn(3),                        // disputes will start with 3 jurors
     appealStepFactor:              bn(3),                        // the number of jurors to be drafted will be incremented 3 times on each appeal
     maxRegularAppealRounds:        bn(4),                        // there can be up to 4 appeals in total per dispute
-    finalRoundLockTerms:           bn(1),                        // coherent jurors in the final round won't be able to withdraw for 21 terms (7 days)
+    finalRoundLockTerms:           bn(21),                        // coherent jurors in the final round won't be able to withdraw for 21 terms (7 days)
     appealCollateralFactor:        bn(30000),                    // appeal collateral is 3x of the corresponding juror fees
     appealConfirmCollateralFactor: bn(20000),                    // appeal-confirmation collateral is 2x of the corresponding juror fees
     finalRoundWeightPrecision:     bn(1000),                     // use to improve division rounding for final round maths
-    skippedDisputes:               2,                               // number of dispute to skip
+    skippedDisputes:               1,                               // number of dispute to skip
   },
   jurors: {
     minActiveBalance:              bigExp(5, 17),             // 0.5 HNY is the minimum balance jurors must activate to participate in the Court
@@ -59,19 +57,19 @@ module.exports = {
     maxMaxPctTotalSupply:          bigExp(1, 16),             // 1% of the current total supply is the max a juror can activate when 0 stake is activated
   },
   subscriptions: {
-    feeToken:                      HNY,                             // fee token for subscriptions is DAI
+    feeToken:                      HNY,                             // fee token paid as reward is Honey
     feeAmount:                     bigExp(0, 18),             // Not used
-    periodDuration:                bn(3),                        // each subscription period lasts 3 terms (? days)
+    periodDuration:                bn(90),                       // each subscription period lasts 90 terms (30 days)
     prePaymentPeriods:             bn(0),                        // Not used
     resumePrePaidPeriods:          bn(0),                        // Not used
     latePaymentPenaltyPct:         bn(0),                        // Not used
     governorSharePct:              bn(0),                        // Not used
   },
   brightIdRegister: {
-    address: ""      // The BrightIdRegister address, requires deploying first part of DAO
+    address: "0xe8ab35661a9089614030f97c7b303e3cb6ff60db"      // The BrightIdRegister address, requires deploying first part of DAO
   },
   feesUpdater: {
-    priceOracle: "0x8af13Ba3Fe8C4279D868DD0720f989EA03692E29", // Using HNY and DAI, with HNY as incentive token
+    priceOracle: "0x6f38D112b13eda1E3abAFC61E296Be2E27F15071", // Using HNY and DAI, with HNY as incentive token
     stableTokenAddress: DAI.address,
     stableFees: [bigExp(10, 18), bigExp(18, 16), bigExp(1, 17)]
     // juror fee = 10, draft fee = 0.18, settle fee = 0.1 in xdai
