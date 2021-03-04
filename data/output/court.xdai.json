@@ -23,5 +23,15 @@
     "address": "0x360229267A176a11Db407A5cc54734fED6313024",
     "transactionHash": "0xbe6bfddce3fe795143203896c541bf22a87c7bf4ceb6949256788444f17cf291",
     "version": "v1.0"
+  },
+  "subscriptions": {
+    "address": "0x8d5aBB64205d6A4F204CE10ba48542f5a244B36C",
+    "transactionHash": "0xf9ad9e12180bb1bf341f0f001fb178350c147667c39a20704beb56f4791408fe",
+    "version": "v1.0"
+  },
+  "feesUpdater": {
+    "address": "0x89A0FDE9843a72a13d993a47A859700f518DFd8e",
+    "transactionHash": "0xf7bf192aa73d9cb759ba247cfd61f12b2c0cebd8bf0d566346c97abc7a19c8c4",
+    "version": "v1.0"
   }
 }

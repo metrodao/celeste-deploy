@@ -45,7 +45,7 @@ module.exports = {
     firstRoundJurorsNumber:        bn(3),                        // disputes will start with 3 jurors
     appealStepFactor:              bn(3),                        // the number of jurors to be drafted will be incremented 3 times on each appeal
     maxRegularAppealRounds:        bn(4),                        // there can be up to 4 appeals in total per dispute
-    finalRoundLockTerms:           bn(21),                        // coherent jurors in the final round won't be able to withdraw for 21 terms (7 days)
+    finalRoundLockTerms:           bn(21),                       // coherent jurors in the final round won't be able to withdraw for 21 terms (7 days)
     appealCollateralFactor:        bn(30000),                    // appeal collateral is 3x of the corresponding juror fees
     appealConfirmCollateralFactor: bn(20000),                    // appeal-confirmation collateral is 2x of the corresponding juror fees
     finalRoundWeightPrecision:     bn(1000),                     // use to improve division rounding for final round maths
@@ -53,8 +53,8 @@ module.exports = {
   },
   jurors: {
     minActiveBalance:              bigExp(5, 17),             // 0.5 HNY is the minimum balance jurors must activate to participate in the Court
-    minMaxPctTotalSupply:          bigExp(1, 15),             // 0.1% of the current total supply is the max a juror can activate when the total supply stake is activated
-    maxMaxPctTotalSupply:          bigExp(1, 16),             // 1% of the current total supply is the max a juror can activate when 0 stake is activated
+    minMaxPctTotalSupply:          bigExp(1, 14),             // 0.01% of the current total supply is the max a juror can activate when the total supply of HNY is activated
+    maxMaxPctTotalSupply:          bigExp(1, 15),             // 0.1% of the current total supply is the max a juror can activate when 0 HNY is activated
   },
   subscriptions: {
     feeToken:                      HNY,                             // fee token paid as reward is Honey
@@ -66,7 +66,7 @@ module.exports = {
     governorSharePct:              bn(0),                        // Not used
   },
   brightIdRegister: {
-    address: "0xe8ab35661a9089614030f97c7b303e3cb6ff60db"      // The BrightIdRegister address, requires deploying first part of DAO
+    address: "0xe8ab35661a9089614030f97c7b303e3cb6ff60db"      // The BrightIdRegister address, copy in after deploying first part of DAO
   },
   feesUpdater: {
     priceOracle: "0x6f38D112b13eda1E3abAFC61E296Be2E27F15071", // Using HNY and DAI, with HNY as incentive token
