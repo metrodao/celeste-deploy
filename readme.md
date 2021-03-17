@@ -17,7 +17,7 @@ npm run deploy:faucet -- -n rinkeby
 
 Mint tokens for sender address:
 ```
-npm run mint -- --to <sender address> --token HNY
+npm run mint -- --to <sender address> --token HNYT
 npm run mint -- --to <sender address> --token DAI 
 ```
 - Now open the tokens in etherscan and `approve()` each to allow the faucet to transfer them.  
