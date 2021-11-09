@@ -8,6 +8,10 @@ const environments = {
     controller:       undefined, 				                      // Will be set to the sender
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
   },
+  arbtest: {
+    controller:       undefined, 				                      // Will be set to the sender
+    factory:          '0x124C3Ae1EfBf30c61966989D150738978D16849A',
+  },
   xdai: {
     controller:  undefined,
     factory:     '0xA54deE0cca6037179b0CC427e50FD3ab3D68a7B4' // I think...

@@ -1,0 +1,37 @@
+{
+  "court": {
+    "address": "0xa268dFd49E633C68933d7fc77fa99a867C0B86BB",
+    "transactionHash": "0xf8aeb0c45e4b670abc7c17f3d297b01e9c2f7d43a20fc22ab54894697b426009",
+    "version": "v1.0"
+  },
+  "disputes": {
+    "address": "0x3e436327F27131405860EC9478B4e26071D9A83a",
+    "transactionHash": "0x5b6a05f02122eb49ecbf7847e80f2cc061a76e8ee8a584406e45a449bf0fb58e",
+    "version": "v1.0"
+  },
+  "registry": {
+    "address": "0xA9dd8588E9B7489508D97EA83Bb5FA7c60D3B91F",
+    "transactionHash": "0x1e317af04e57b9b6da9f169305a6352d5334b77c8ad0624cd42828b497a78a5b",
+    "version": "v1.0"
+  },
+  "voting": {
+    "address": "0x681f72b996e1555ba8Fde4851048972B243063FD",
+    "transactionHash": "0x6a8b3dbc076a40ccd0aa94b0e1e0bf7f53db74a4be1eb1e1309a5176283f67db",
+    "version": "v1.0"
+  },
+  "treasury": {
+    "address": "0xe5dC46a00FF9ffE609401982303183E91bB4DbbC",
+    "transactionHash": "0x09fb72fdeddfb08f5c21b297c304cf9ce855f7990b7a9c73c4b12c1bde5f62ab",
+    "version": "v1.0"
+  },
+  "subscriptions": {
+    "address": "0x4e4EA6845d7656d569DC4CCC7b68Bb3023720837",
+    "transactionHash": "0x52a948ff0741ea36e851d60be01d6dfe87971eb0924273a1bd71614098e4dbaf",
+    "version": "v1.0"
+  },
+  "feesUpdater": {
+    "address": "0xA14185AaFfa1815d992513dC671DF04219215d2d",
+    "transactionHash": "0x1df497c039776a4b32b7c86279ffba77f1418faba757aeaa38060f59f54bb042",
+    "version": "v1.0"
+  }
+}

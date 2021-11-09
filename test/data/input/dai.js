@@ -11,5 +11,6 @@ module.exports = {
   staging: config,
   ropsten: config,
   rinkeby: config,
-  xdai: config
+  xdai: config,
+  arbtest: config
 }

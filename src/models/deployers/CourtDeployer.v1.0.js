@@ -251,7 +251,8 @@ module.exports = class extends BaseDeployer {
     this.subscriptions = await Subscriptions.new(
       this.court.address,
       subscriptions.periodDuration,
-      subscriptions.feeToken.address
+      subscriptions.feeToken.address,
+      subscriptions.periodPercentageYield
     )
 
     const { address, transactionHash } = this.subscriptions

@@ -1,6 +1,6 @@
 const homedir = require("os").homedir;
 const path = require("path");
-
+const wrapProvider = require('arb-ethers-web3-bridge').wrapProvider
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 const DEFAULT_MNEMONIC =
@@ -77,7 +77,13 @@ module.exports = {
       network_id: 4,
       provider: providerForNetwork("rinkeby"),
       gas: 8e6,
-      gasPrice: 15000000001
+      gasPrice: 1000000000
+    },
+    arbtest: {
+      network_id: "*",
+      provider: providerForNetwork("arbtest"),
+      gasPrice: 0,
+      gas: 700e6
     },
     staging: {
       network_id: 4,

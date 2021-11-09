@@ -10,6 +10,12 @@ const rinkeby = governor({
   tokenManager: '0xdf456B614fE9FF1C7c0B380330Da29C96d40FB02',             // EOA
 })
 
+const arbtest = governor({
+  agent:        '0xdf456B614fE9FF1C7c0B380330Da29C96d40FB02',             // EOA
+  voting:       '0xdf456B614fE9FF1C7c0B380330Da29C96d40FB02',             // EOA
+  tokenManager: '0xdf456B614fE9FF1C7c0B380330Da29C96d40FB02',             // EOA
+})
+
 const xdai = governor({
   agent:        '0x23e4941f58896705d5c29d641979c4f66b03496f',             // Celeste DAO Voting
   voting:       '0x23e4941f58896705d5c29d641979c4f66b03496f',             // Celeste DAO Voting
@@ -25,6 +31,7 @@ const mainnet = governor({ // https://mainnet.aragon.org/#/network
 module.exports = {
   rpc,
   rinkeby,
+  arbtest,
   mainnet,
   xdai
 }
