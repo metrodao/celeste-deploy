@@ -35,7 +35,7 @@ module.exports = class extends BaseDeployer {
     logger.success('Funds successfully transferred to migrator')
 
     logger.info('Setting modules...')
-    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@1hive/celeste')
+    const AragonCourt = await this.environment.getArtifact('Celeste', '@1hive/celeste')
     const controller = await AragonCourt.at(court)
     await controller.setModules([JURORS_REGISTRY_ID, DISPUTE_MANAGER_ID], [newRegistry, migrator])
     logger.success('Modules set successfully')

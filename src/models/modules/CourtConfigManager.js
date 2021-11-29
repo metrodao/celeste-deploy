@@ -21,7 +21,7 @@ module.exports = class extends BaseDeployer {
     const { court, jurors } = this.config
     logger.info('Setting Court config...')
     const fromTermId = (await this._getCurrentTerm()).add(1)
-    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@1hive/celeste')
+    const AragonCourt = await this.environment.getArtifact('Celeste', '@1hive/celeste')
     const controller = await AragonCourt.at(court)
     await controller.setConfig(
       fromTermId.toString(),
@@ -48,7 +48,7 @@ module.exports = class extends BaseDeployer {
 
   async _getCurrentTerm() {
     const { modules: { court } } = this.config
-    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@1hive/celeste')
+    const AragonCourt = await this.environment.getArtifact('Celeste', '@1hive/celeste')
     const controller = await AragonCourt.at(court)
     return controller.getCurrentTermId()
   }
@@ -76,5 +76,6 @@ module.exports = class extends BaseDeployer {
     logger.info(` - Minimum ANJ active balance :             ${tokenToString(jurors.minActiveBalance, court.feeToken)}`)
     logger.info(` - Min Max Pct Total Supply:                ${jurors.minMaxPctTotalSupply.toString()}`)
     logger.info(` - Max Max Pct Total Supply:                ${jurors.maxMaxPctTotalSupply.toString()}`)
+    logger.info(` - Fee Token Total Supply:                  ${jurors.feeTokenTotalSupply.toString()}`)
   }
 }

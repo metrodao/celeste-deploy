@@ -18,7 +18,7 @@ module.exports = class extends BaseDeployer {
   async delayCourtStartDirectly() {
     const { modules: { court }, clock: { firstTermStartTime } } = this.config
     logger.info('Delaying Court start time...')
-    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@1hive/celeste')
+    const AragonCourt = await this.environment.getArtifact('Celeste', '@1hive/celeste')
     const controller = await AragonCourt.at(court)
     await controller.delayStartTime(firstTermStartTime)
     logger.success('Court start time delayed successfully')

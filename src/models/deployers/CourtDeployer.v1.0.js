@@ -32,7 +32,7 @@ module.exports = class extends BaseDeployer {
 
   async loadOrDeployCourt() {
     const { court } = this.previousDeploy
-    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@1hive/celeste')
+    const AragonCourt = await this.environment.getArtifact('Celeste', '@1hive/celeste')
 
     if (court && court.address) await this._loadAragonCourt(AragonCourt, court.address)
     else await this._deployAragonCourt(AragonCourt)
@@ -194,7 +194,7 @@ module.exports = class extends BaseDeployer {
         court.firstRoundJurorsNumber, court.appealStepFactor, court.maxRegularAppealRounds, court.finalRoundLockTerms],
       [court.penaltyPct, court.finalRoundReduction],
       [court.appealCollateralFactor, court.appealConfirmCollateralFactor],
-      [jurors.minActiveBalance, jurors.minMaxPctTotalSupply, jurors.maxMaxPctTotalSupply]
+      [jurors.minActiveBalance, jurors.minMaxPctTotalSupply, jurors.maxMaxPctTotalSupply, jurors.feeTokenTotalSupply]
     )
 
     const { address, transactionHash } = this.court
@@ -363,6 +363,7 @@ module.exports = class extends BaseDeployer {
     logger.info(` - Minimum ANJ active balance :             ${tokenToString(jurors.minActiveBalance, court.feeToken)}`)
     logger.info(` - Min Max Pct Total Supply:                ${jurors.minMaxPctTotalSupply.toString()}`)
     logger.info(` - Max Max Pct Total Supply:                ${jurors.maxMaxPctTotalSupply.toString()}`)
+    logger.info(` - Fee Token Total Supply:                  ${jurors.feeTokenTotalSupply.toString()}`)
   }
 
   _printDisputesDeploy() {
@@ -380,6 +381,7 @@ module.exports = class extends BaseDeployer {
     logger.info(` - Minimum ANJ active balance:              ${tokenToString(jurors.minActiveBalance, this.config.court.feeToken)}`)
     logger.info(` - Min Max Pct Total Supply:                ${jurors.minMaxPctTotalSupply.toString()}`)
     logger.info(` - Max Max Pct Total Supply:                ${jurors.maxMaxPctTotalSupply.toString()}`)
+    logger.info(` - Fee Token Total Supply:                  ${jurors.feeTokenTotalSupply.toString()}`)
     logger.info(` - Total ANJ active balance limit:          ${tokenToString(totalActiveBalanceLimit, this.config.court.feeToken)}`)
   }
 

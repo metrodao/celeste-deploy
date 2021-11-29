@@ -35,7 +35,7 @@ contract('CourtDeployer v1.0', ([_, sender]) => {
     await deployer.call()
     const deployedContracts = require(outputFilepath)
 
-    const AragonCourt = await environment.getArtifact('AragonCourt', '@aragon/court')
+    const AragonCourt = await environment.getArtifact('Celeste', '@1hive/celeste')
     court = await AragonCourt.at(deployedContracts.court.address)
 
     const DisputeManager = await environment.getArtifact('DisputeManager', '@aragon/court')

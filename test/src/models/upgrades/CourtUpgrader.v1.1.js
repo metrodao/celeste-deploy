@@ -33,7 +33,7 @@ contract('CourtUpgrader v1.1', ([_, governor]) => {
     })
 
     before('deploy and upgrade', async () => {
-      const AragonCourt = await environment.getArtifact('AragonCourt', '@aragon/court')
+      const AragonCourt = await environment.getArtifact('Celeste', '@1hive/celeste')
       const DisputeManager = await environment.getArtifact('DisputeManager', '@aragon/court')
       const CourtTreasury = await environment.getArtifact('CourtTreasury', '@aragon/court')
       const JurorsRegistry = await environment.getArtifact('JurorsRegistry', '@aragon/court')

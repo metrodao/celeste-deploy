@@ -30,7 +30,7 @@ contract('Verifier', ([_, sender]) => {
     const deployer = new CourtDeployer(Config, environment, outputFilepath)
     await deployer.call()
     const deployedContracts = require(outputFilepath)
-    const AragonCourt = await environment.getArtifact('AragonCourt', '@aragon/court')
+    const AragonCourt = await environment.getArtifact('Celeste', '@1hive/celeste')
     court = await AragonCourt.at(deployedContracts.court.address)
   })
 

@@ -20,7 +20,7 @@
     "set:subscriptions-params": "node ./bin/index.js set-subscriptions-params --verbose"
   },
   "dependencies": {
-    "@1hive/celeste": "^0.1.6",
+    "@1hive/celeste": "^0.1.7",
     "@aragon/apps-agent": "^2.0.0",
     "@aragon/apps-token-manager": "^2.1.0",
     "@aragon/apps-voting": "^2.1.0",
@@ -34,6 +34,7 @@
     "@aragonone/court-registry-migrator": "^1.0.0",
     "@truffle/config": "1.2.6",
     "@truffle/contract": "4.0.32",
+    "@truffle/hdwallet-provider": "^1.4.0",
     "axios": "^0.19.0",
     "chalk": "^2.4.2",
     "truffle-flattener": "^1.4.2",
@@ -44,7 +45,7 @@
   "devDependencies": {
     "@aragon/test-helpers": "^2.1.0",
     "ganache-cli": "^6.4.5",
-    "truffle": "^5.0.34",
+    "truffle": "5.0.44",
     "arb-ethers-web3-bridge": "^0.7.3"
   }
 }

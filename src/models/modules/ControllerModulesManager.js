@@ -22,7 +22,7 @@ module.exports = class extends BaseDeployer {
     const modules = this._getChangingModules()
     const ids = modules.map(module => module.id)
     const addresses = modules.map(module => module.address)
-    const AragonCourt = await this.environment.getArtifact('AragonCourt', '@1hive/celeste')
+    const AragonCourt = await this.environment.getArtifact('Celeste', '@1hive/celeste')
     const controller = await AragonCourt.at(this.config.modules.court)
     await controller.setModules(ids, addresses)
     logger.success('Modules set successfully')

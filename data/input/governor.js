@@ -22,6 +22,18 @@ const xdai = governor({
   tokenManager: '0x23e4941f58896705d5c29d641979c4f66b03496f',             // Celeste DAO Voting
 })
 
+const polygon = governor({
+  agent:        '0x75CE3DDa4f75CFF4981b8Bc362341c1dd10dDa29',             // Polygon Gnosis Multisig
+  voting:       '0x75CE3DDa4f75CFF4981b8Bc362341c1dd10dDa29',             // Polygon Gnosis Multisig
+  tokenManager: '0x75CE3DDa4f75CFF4981b8Bc362341c1dd10dDa29',             // Polygon Gnosis Multisig
+})
+
+const arbitrum = governor({
+  agent:        '0x488a272dde16f9218117926D0156C01668F20f25',             // Arbitrum Gnosis Multisig
+  voting:       '0x488a272dde16f9218117926D0156C01668F20f25',             // Arbitrum Gnosis Multisig
+  tokenManager: '0x488a272dde16f9218117926D0156C01668F20f25',             // Arbitrum Gnosis Multisig
+})
+
 const mainnet = governor({ // https://mainnet.aragon.org/#/network
   agent:        '0x5e8c17a6065c35b172b10e80493d2266e2947df4',             // Agent of AN DAO
   voting:       '0x240b4de6000b4ad52ceaa1057c2647bfc24ce697',             // Voting of AN DAO
@@ -33,5 +45,7 @@ module.exports = {
   rinkeby,
   arbtest,
   mainnet,
-  xdai
+  xdai,
+  polygon,
+  arbitrum
 }

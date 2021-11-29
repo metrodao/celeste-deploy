@@ -79,6 +79,12 @@ module.exports = {
       gas: 8e6,
       gasPrice: 1000000000
     },
+    polygon: {
+      network_id: 137,
+      provider: providerForNetwork("matic"),
+      gas: 8e6,
+      gasPrice: 30000000000
+    },
     arbtest: {
       network_id: "*",
       provider: providerForNetwork("arbtest"),
